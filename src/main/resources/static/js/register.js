@@ -22,8 +22,6 @@ const request = await fetch("api/user", {
                                          "Accept": "application/json",
                                          "Content-Type": "application/json"},
                                          body: JSON.stringify(userInfo)});
-console.log(request)
-    console.log(userInfo)
                                          alert("La cuenta fue creada con éxito.");
                                          window.location.href = "login.html";
 }
