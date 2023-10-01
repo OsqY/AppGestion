@@ -5,7 +5,6 @@ import com.cursoSpring.cursoSpring.model.User;
 import com.cursoSpring.cursoSpring.utils.JWTUtil;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,15 +12,18 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    @Autowired
-    private UserDAO userDao;
+    private final UserDAO userDao;
 
-    @Autowired
-    private JWTUtil jwtUtil;
+    private final JWTUtil jwtUtil;
+
+    public UserController(UserDAO userDao, JWTUtil jwtUtil) {
+        this.userDao = userDao;
+        this.jwtUtil = jwtUtil;
+    }
 
     @GetMapping("api/users")
     public List<User> getUsers(@RequestHeader(value = "Authorization") String token){
-        if (!validateToken(token)){
+        if (validateToken(token)){
             System.out.println("No se validó el token");
             return null;
         }
@@ -30,12 +32,12 @@ public class UserController {
 
     public boolean validateToken(String token){
         String userId = jwtUtil.getKey(token);
-        return userId != null;
+        return userId == null;
     }
     @DeleteMapping(value = "api/users/{id}")
     public void deleteUser(@RequestHeader(value = "Authorization") String token,@PathVariable Long id){
 
-        if (!validateToken(token)){
+        if (validateToken(token)){
             return;
         }
         userDao.deleteUser(id);

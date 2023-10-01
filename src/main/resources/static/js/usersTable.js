@@ -2,11 +2,7 @@
 $(document).ready(function() {
     loadUsers();
     $('#tablaUsuarios').DataTable();
-    updateUserEmail();
 });
-function updateUserEmail() {
-    document.getElementById('txt-email-usuario').outerHTML = localStorage.email;
-}
 async function loadUsers() {
     try {
         const request = await fetch("api/users", {
@@ -28,9 +24,9 @@ async function loadUsers() {
                 htmlList += htmlUser;
             }
             document.querySelector('#tablaUsuarios tbody').outerHTML = htmlList;
-        } else {
-            throw new Error("La solicitud no se completó correctamente. Estado: " + request.status);
         }
+             Error("La solicitud no se completó correctamente. Estado: " + request.status);
+
     } catch (error) {
         console.error("Error al cargar usuarios:", error);
     }
@@ -57,9 +53,8 @@ async function deleteUser(id) {
 
         if (request.status >= 200 && request.status < 300) {
             location.reload();
-        } else {
-            throw new Error("La solicitud de eliminación no se completó correctamente. Estado: " + request.status);
         }
+            Error("La solicitud de eliminación no se completó correctamente. Estado: " + request.status);
     } catch (error) {
         console.error("Error al eliminar usuario:", error);
     }

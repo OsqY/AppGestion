@@ -16,7 +16,7 @@ public class ProjectService {
 
     @PersistenceContext
     EntityManager entityManager;
-    private ProjectRepository projectRepository;
+    private final ProjectRepository projectRepository;
 
     @Autowired
     public ProjectService(ProjectRepository projectRepository) {

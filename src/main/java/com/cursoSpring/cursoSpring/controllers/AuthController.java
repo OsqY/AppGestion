@@ -17,8 +17,7 @@ public class AuthController {
     public String login(@RequestBody User user){
         User loggedUser = userDao.getUser(user);
         if (loggedUser != null){
-            String token = jwtUtil.create(String.valueOf(loggedUser.getId()), loggedUser.getEmail());
-            return token;
+            return jwtUtil.create(String.valueOf(loggedUser.getId()), loggedUser.getEmail());
         }
         return "FAIL";
     }

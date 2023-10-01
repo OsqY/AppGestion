@@ -5,8 +5,8 @@ $(document).ready(function() {
 
 async function login(){
 let userInfo = {};
-userInfo.email = document.getElementById("correoTxt").value;
-userInfo.password = document.getElementById("contraseniaTxt").value;
+userInfo.email = document.getElementById("emailTxt").value;
+userInfo.password = document.getElementById("passwordTxt").value;
 
 
 const request = await fetch("api/login", {
@@ -16,7 +16,7 @@ const request = await fetch("api/login", {
                                          "Content-Type": "application/json"},
                                          body: JSON.stringify(userInfo)});
                                          const answer = await request.text();
-                                         if (answer != "FAIL") {
+                                         if (answer !== "FAIL") {
                                            localStorage.token = answer;
                                            localStorage.email = userInfo.email;
                                            window.location.href = "users.html";

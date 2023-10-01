@@ -2,11 +2,7 @@
 $(document).ready(function() {
     loadProjects();
     $('#projectsTable').DataTable();
-    updateUserEmail();
 });
-function updateUserEmail() {
-    document.getElementById('txt-email-usuario').outerHTML = localStorage.email;
-}
 async function loadProjects() {
     try {
         const request = await fetch("projects/", {
@@ -36,9 +32,8 @@ async function loadProjects() {
                 htmlList += htmlProject;
             }
             document.querySelector('#projectsTable tbody').outerHTML = htmlList;
-        } else {
-            throw new Error("La solicitud no se completó correctamente. Estado: " + request.status);
         }
+         Error("La solicitud no se completó correctamente. Estado: " + request.status);
     } catch (error) {
         console.error("Error al cargar usuarios:", error);
     }
@@ -65,9 +60,8 @@ async function deleteProject(id) {
 
         if (request.status >= 200 && request.status < 300) {
             location.reload();
-        } else {
-            throw new Error("La solicitud de eliminación no se completó correctamente. Estado: " + request.status);
         }
+        Error("La solicitud de eliminación no se completó correctamente. Estado: " + request.status);
     } catch (error) {
         console.error("Error al eliminar el proyecto:", error);
     }
