@@ -1,7 +1,6 @@
-// Call the dataTables jQuery plugin
-$(document).ready(function() {
 
-});
+const loginBtn = document.getElementById('login-btn');
+loginBtn.addEventListener("click", login);
 
 async function login(){
 let userInfo = {};

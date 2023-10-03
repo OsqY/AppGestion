@@ -22,19 +22,23 @@ public class ProjectService {
     public ProjectService(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }
-    public Project createProject(Project project){
+
+    public Project createProject(Project project) {
         List<User> listUsers = entityManager.createQuery("SELECT email FROM User").getResultList();
-        if (listUsers.contains(project.getUserForProject())){
+        if (listUsers.contains(project.getUserForProject())) {
             return projectRepository.save(project);
         }
         return null;
     }
-    public List<Project> getProjects(){
+
+    public List<Project> getProjects() {
         return projectRepository.findAll();
     }
-    public Project getProjectById(Long id){
+
+    public Project getProjectById(Long id) {
         return projectRepository.findById(id).orElse(null);
     }
+
     public Project updateProject(Project updateProject) {
         Optional<Project> optionalExistingProject = projectRepository.findById(updateProject.getId());
 
@@ -46,13 +50,39 @@ public class ProjectService {
             existingProject.setStartDate(updateProject.getStartDate());
             existingProject.setEndDate(updateProject.getEndDate());
 
-            Project updatedProject = projectRepository.save(existingProject);
+            return projectRepository.save(existingProject);
 
         }
         return null;
     }
 
-    public void deleteProject(Long id){
+    public Project updateProjectStatusToInProgress(Project updateProject) {
+        Optional<Project> optionalExistingProject = projectRepository.findById(updateProject.getId());
+
+        if (optionalExistingProject.isPresent()) {
+            Project existingProject = optionalExistingProject.get();
+            existingProject.setStatus(Project.ProjectStatus.ENPROGRESO);
+
+            return projectRepository.save(existingProject);
+
+        }
+        return null;
+    }
+
+    public Project updateProjectStatusToCompleted(Project updateProject) {
+        Optional<Project> optionalExistingProject = projectRepository.findById(updateProject.getId());
+
+        if (optionalExistingProject.isPresent()) {
+            Project existingProject = optionalExistingProject.get();
+            existingProject.setStatus(Project.ProjectStatus.COMPLETADO);
+
+            return projectRepository.save(existingProject);
+
+        }
+        return null;
+    }
+
+    public void deleteProject(Long id) {
         projectRepository.deleteById(id);
     }
 }
