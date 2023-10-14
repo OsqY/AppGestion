@@ -10,7 +10,12 @@ import java.util.List;
 
 @RestController
 <<<<<<< HEAD
+<<<<<<< HEAD
 public class ProjectController  {
+=======
+@RequestMapping("/projects")
+public class ProjectController {
+>>>>>>> a04e22074c94280ec32b52ab5809b01714c48872
 =======
 @RequestMapping("/projects")
 public class ProjectController {
@@ -27,6 +32,7 @@ public class ProjectController {
         return projectService.getProjects();
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     @GetMapping("api/projects/{id}")
     public Project getProjectById(@PathVariable Long id){
@@ -63,6 +69,23 @@ public class ProjectController {
         project.setId(id);
         return ResponseEntity.ok(projectService.updateProject(project));
     }
+=======
+    @GetMapping("/{id}")
+    public Project getProjectById(@PathVariable Long id) {
+        return projectService.getProjectById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProject(@PathVariable Long id) {
+        projectService.deleteProject(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Project> updateProject(@PathVariable Long id, @RequestBody Project project) {
+        project.setId(id);
+        return ResponseEntity.ok(projectService.updateProject(project));
+    }
+>>>>>>> a04e22074c94280ec32b52ab5809b01714c48872
 
     @PatchMapping("/en_progreso/{id}")
     public ResponseEntity<Project> setProjectStatusToInProgress(@PathVariable Long id, @RequestBody Project project) {
@@ -81,6 +104,9 @@ public class ProjectController {
     public Project createProject(@RequestBody Project project) {
         if (project.getPriority() != null && (project.getPriority() == Project.ProjectPriority.BAJA ||
                 project.getPriority() == Project.ProjectPriority.MEDIA || project.getPriority() == Project.ProjectPriority.ALTA)) {
+<<<<<<< HEAD
+>>>>>>> a04e22074c94280ec32b52ab5809b01714c48872
+=======
 >>>>>>> a04e22074c94280ec32b52ab5809b01714c48872
             return projectService.createProject(project);
         } else {

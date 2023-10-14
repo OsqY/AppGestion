@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 document.querySelector(".btn.btn-primary.btn-user.btn-block").addEventListener("click", login);
 =======
+=======
+>>>>>>> a04e22074c94280ec32b52ab5809b01714c48872
 
 const loginBtn = document.getElementById('login-btn');
 loginBtn.addEventListener("click", login);
