@@ -1,7 +1,7 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
     loadUsers();
-    $('#tablaUsuarios').DataTable();
+    $('#usersTable').DataTable();
 });
 async function loadUsers() {
     try {
@@ -23,9 +23,9 @@ async function loadUsers() {
                     '</td><td>' + btnDelete + '</td></tr>';
                 htmlList += htmlUser;
             }
-            document.querySelector('#tablaUsuarios tbody').outerHTML = htmlList;
+            document.querySelector('#usersTable tbody').outerHTML = htmlList;
         }
-             Error("La solicitud no se completó correctamente. Estado: " + request.status);
+            Error("La solicitud no se completó correctamente. Estado: " + request.status);
 
     } catch (error) {
         console.error("Error al cargar usuarios:", error);

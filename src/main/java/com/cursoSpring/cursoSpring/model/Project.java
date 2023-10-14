@@ -11,19 +11,42 @@ import java.util.Date;
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter @Column(name = "id")
+    @Getter
+    @Setter
+    @Column(name = "id")
     private long id;
-    @Getter @Setter @Column(name = "useremail")
+    @Getter
+    @Setter
+    @Column(name = "useremail")
     private String userForProject;
-    @Getter @Setter @Column(name = "projectname")
+    @Getter
+    @Setter
+    @Column(name = "projectname")
     private String projectName;
+
     public enum ProjectPriority {
-        LOW, MEDIUM, HIGH
+        BAJA, MEDIA, ALTA
     }
-    @Getter @Setter @Column(name = "priority")
+
+    @Getter
+    @Setter
+    @Column(name = "priority")
     private ProjectPriority priority;
-    @Getter @Setter @Column(name = "startdate")
+    @Getter
+    @Setter
+    @Column(name = "startdate")
     private Date startDate;
-    @Getter @Setter @Column(name = "enddate")
+    @Getter
+    @Setter
+    @Column(name = "enddate")
     private Date endDate;
+
+    public enum ProjectStatus {
+        PENDIENTE, ENPROGRESO, COMPLETADO
+    }
+
+    @Getter
+    @Setter
+    @Column(name = "status")
+    private ProjectStatus status;
 }

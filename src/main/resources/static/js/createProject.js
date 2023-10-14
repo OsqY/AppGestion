@@ -3,15 +3,16 @@ projectBtn.addEventListener("click", createProject);
 
 async function createProject() {
     let projectInfo = {};
-
+    
     projectInfo.projectName = document.getElementById("project-name").value;
     projectInfo.userForProject = document.getElementById("emailTxt").value;
     projectInfo.priority = document.getElementById("project-priority").value;
     projectInfo.startDate = document.getElementById("date-begin").value;
     projectInfo.endDate = document.getElementById("date-end").value;
+    projectInfo.status = 0;
 
     try {
-        const response = await fetch("projects/create", {
+        const response = await fetch("api/projects/create", {
             method: "POST",
             headers: {
                 "Accept": "application/json",
