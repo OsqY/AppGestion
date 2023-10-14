@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (project.origin === "projectPlace") {
                     document.getElementById("emailTxt").value = project.userForProject;
                     document.getElementById("project-name").value = project.projectName;
+                    document.getElementById("project-description").value = project.description;
                     document.getElementById("project-priority").value = project.priority;
                     document.getElementById("date-begin").value = project.startDate;
                     document.getElementById("date-end").value = project.endDate;
@@ -50,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 project.priority = priority;
                 project.startDate = startDate;
                 project.endDate = endDate;
+                project.status = projectToEdit.status;
 
                 fetch("projects/" + project.id, {
                     method: "PUT",

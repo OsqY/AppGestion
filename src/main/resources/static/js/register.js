@@ -23,6 +23,6 @@ async function registerUser() {
         body: JSON.stringify(userInfo)
     });
     alert("La cuenta fue creada con éxito.");
-    window.location.href = "login.html";
+    window.location.href = "login";
 }
 

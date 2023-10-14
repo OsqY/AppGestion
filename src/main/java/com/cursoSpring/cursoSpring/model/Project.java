@@ -24,6 +24,11 @@ public class Project {
     @Column(name = "projectname")
     private String projectName;
 
+    @Getter
+    @Setter
+    @Column(name = "description")
+    private String description;
+
     public enum ProjectPriority {
         BAJA, MEDIA, ALTA
     }

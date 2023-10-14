@@ -24,7 +24,7 @@ async function loadProjects() {
             let htmlList = '';
             for (let project of projects) {
                 let deleteBtn = '<a href="#" onclick="deleteProject(' + project.id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
-                let editBtn = '<a href="createproject.html?projectId=' + project.id.toString() + '" onclick="editProject(' + project.id + ')" class="btn btn-primary btn-circle btn-sm"><i class="fas fa-edit"></i></a>';
+                let editBtn = '<a href="#" onclick="editProject(' + project.id + ')" class="btn btn-primary btn-circle btn-sm"><i class="fas fa-edit"></i></a>';
                 let inProgressBtn = '<a href="#" onclick="editProjectStatus(\'en_progreso\', ' + project.id + ') " class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>';
                 let checkBtn = '<a href="#" onclick="editProjectStatus(\'completado\', ' + project.id + ') " class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a>';
 
@@ -37,8 +37,9 @@ async function loadProjects() {
                     endDate = "No definido";
                 }
 
-                let htmlProject = '<tr><td>' + project.projectName + '</td><td>' + project.userForProject + '</td><td>' +
-                    startDate + '</td><td>' + endDate + '</td><td>' + project.status + '</td><td>' + project.priority +
+                let htmlProject = '<tr><td>' + project.projectName + '</td><td>' + project.userForProject + '</td><td>'
+                    + project.description + '</td><td>' + startDate + '</td><td>' + endDate + '</td><td>'
+                    + project.status + '</td><td>' + project.priority +
                     '</td><td>' + deleteBtn + ' ' + editBtn + ' ' + inProgressBtn + ' ' + checkBtn + '</td></tr>';
                 htmlList += htmlProject;
             }
@@ -72,22 +73,22 @@ async function deleteProject(id) {
 
 async function editProject(id) {
     if (!confirm("¿Desea editar el proyecto?")) {
-
-    } else {
-        try {
-            const request = await fetch("projects/" + id, {
-                method: "GET",
-                headers: getHeaders()
-            });
-            if (request.status >= 200 && request.status < 300) {
-                const project = await request.json();
-                project.origin = "projectPlace"
-                localStorage.setItem("projectToEdit", JSON.stringify(project));
-            }
-            Error("La solicitud de edición no se completó correctamente. Estado: " + request.status);
-        } catch (error) {
-            console.error("Error al editar el proyecto:", error);
+        return;
+    }
+    try {
+        window.location.href = "createproject?projectId=' + id + '";
+        const request = await fetch("projects/" + id, {
+            method: "GET",
+            headers: getHeaders()
+        });
+        if (request.status >= 200 && request.status < 300) {
+            const project = await request.json();
+            project.origin = "projectPlace"
+            localStorage.setItem("projectToEdit", JSON.stringify(project));
         }
+        Error("La solicitud de edición no se completó correctamente. Estado: " + request.status);
+    } catch (error) {
+        console.error("Error al editar el proyecto:", error);
     }
 
 }

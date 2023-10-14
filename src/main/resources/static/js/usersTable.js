@@ -1,8 +1,9 @@
 // Call the dataTables jQuery plugin
-$(document).ready(function() {
+$(document).ready(function () {
     loadUsers();
-    $('#tablaUsuarios').DataTable();
+    $('#usersTable').DataTable();
 });
+
 async function loadUsers() {
     try {
         const request = await fetch("api/users", {
@@ -23,9 +24,9 @@ async function loadUsers() {
                     '</td><td>' + btnDelete + '</td></tr>';
                 htmlList += htmlUser;
             }
-            document.querySelector('#tablaUsuarios tbody').outerHTML = htmlList;
+            document.querySelector('#usersTable tbody').outerHTML = htmlList;
         }
-             Error("La solicitud no se completó correctamente. Estado: " + request.status);
+        Error("La solicitud no se completó correctamente. Estado: " + request.status);
 
     } catch (error) {
         console.error("Error al cargar usuarios:", error);
@@ -54,7 +55,7 @@ async function deleteUser(id) {
         if (request.status >= 200 && request.status < 300) {
             location.reload();
         }
-            Error("La solicitud de eliminación no se completó correctamente. Estado: " + request.status);
+        Error("La solicitud de eliminación no se completó correctamente. Estado: " + request.status);
     } catch (error) {
         console.error("Error al eliminar usuario:", error);
     }

@@ -3,10 +3,11 @@ projectBtn.addEventListener("click", createProject);
 
 async function createProject() {
     let projectInfo = {};
-    
+
     projectInfo.projectName = document.getElementById("project-name").value;
     projectInfo.userForProject = document.getElementById("emailTxt").value;
     projectInfo.priority = document.getElementById("project-priority").value;
+    projectInfo.description = document.getElementById("project-description").value;
     projectInfo.startDate = document.getElementById("date-begin").value;
     projectInfo.endDate = document.getElementById("date-end").value;
     projectInfo.status = 0;
