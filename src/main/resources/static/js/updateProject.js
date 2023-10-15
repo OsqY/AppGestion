@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 project.endDate = endDate;
                 project.status = projectToEdit.status;
 
-                fetch("projects/" + project.id, {
+                fetch("api/projects/" + project.id, {
                     method: "PUT",
                     headers: {
                         "Accept": "application/json",
