@@ -1,6 +1,6 @@
-package com.cursoSpring.cursoSpring.DAO;
+package com.oscar.appgestion.DAO;
 
-import com.cursoSpring.cursoSpring.model.User;
+import com.oscar.appgestion.model.User;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import jakarta.persistence.EntityManager;
@@ -9,9 +9,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 @Repository
 @Transactional
-public class UserDAOImpl implements  UserDAO {
+public class UserDAOImpl implements UserDAO {
     @PersistenceContext
     EntityManager entityManager;
 
@@ -29,21 +30,22 @@ public class UserDAOImpl implements  UserDAO {
     }
 
     @Override
-    public void registerUser(User user) {entityManager.merge(user);
+    public void registerUser(User user) {
+        entityManager.merge(user);
     }
 
     @Override
     public User getUser(User user) {
         String query = "FROM User WHERE email = :email";
-        List<User> usersList =  entityManager.createQuery(query).setParameter("email", user.getEmail())
+        List<User> usersList = entityManager.createQuery(query).setParameter("email", user.getEmail())
                 .getResultList();
-        if (usersList.isEmpty()){
+        if (usersList.isEmpty()) {
             return null;
         }
         String hashedPassword = usersList.get(0).getPassword();
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-        if (argon2.verify(hashedPassword, user.getPassword())){
-         return usersList.get(0);
+        if (argon2.verify(hashedPassword, user.getPassword())) {
+            return usersList.get(0);
         }
         return null;
     }

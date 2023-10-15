@@ -1,4 +1,4 @@
-package com.cursoSpring.cursoSpring.model;
+package com.oscar.appgestion.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

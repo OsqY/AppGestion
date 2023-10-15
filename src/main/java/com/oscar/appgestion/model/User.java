@@ -1,4 +1,4 @@
-package com.cursoSpring.cursoSpring.model;
+package com.oscar.appgestion.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -9,17 +9,29 @@ import lombok.Setter;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter @Column(name = "id")
+    @Getter
+    @Setter
+    @Column(name = "id")
     private Long id;
-    @Getter @Setter @Column(name = "name")
+    @Getter
+    @Setter
+    @Column(name = "name")
     private String userName;
-    @Getter @Setter @Column(name = "lastname")
+    @Getter
+    @Setter
+    @Column(name = "lastname")
     private String userLastName;
-    @Getter @Setter @Column(name = "email")
+    @Getter
+    @Setter
+    @Column(name = "email")
     private String email;
-    @Getter @Setter @Column(name = "phone")
+    @Getter
+    @Setter
+    @Column(name = "phone")
     private String phoneNumber;
-    @Getter @Setter @Column(name = "password")
+    @Getter
+    @Setter
+    @Column(name = "password")
     private String password;
 
 }

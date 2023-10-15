@@ -1,4 +1,4 @@
-package com.cursoSpring.cursoSpring.utils;
+package com.oscar.appgestion.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;

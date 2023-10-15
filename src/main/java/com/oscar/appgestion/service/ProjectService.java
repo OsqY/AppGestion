@@ -1,8 +1,8 @@
-package com.cursoSpring.cursoSpring.service;
+package com.oscar.appgestion.service;
 
-import com.cursoSpring.cursoSpring.model.Project;
-import com.cursoSpring.cursoSpring.model.User;
-import com.cursoSpring.cursoSpring.repository.ProjectRepository;
+import com.oscar.appgestion.model.Project;
+import com.oscar.appgestion.model.User;
+import com.oscar.appgestion.repository.ProjectRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;

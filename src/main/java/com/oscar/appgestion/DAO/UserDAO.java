@@ -1,10 +1,10 @@
-package com.cursoSpring.cursoSpring.DAO;
+package com.oscar.appgestion.DAO;
 
-import com.cursoSpring.cursoSpring.model.User;
+import com.oscar.appgestion.model.User;
 
 import java.util.List;
 
-public interface UserDAO  {
+public interface UserDAO {
 
     List<User> getUsers();
 

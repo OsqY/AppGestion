@@ -1,4 +1,4 @@
-package com.cursoSpring.cursoSpring.config;
+package com.oscar.appgestion.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
