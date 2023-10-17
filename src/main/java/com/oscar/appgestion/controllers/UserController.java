@@ -32,7 +32,7 @@ public class UserController {
 
     public boolean validateToken(String token) {
         String userId = jwtUtil.getKey(token);
-        return userId == null;
+        return userId != null;
     }
 
     @DeleteMapping(value = "api/users/{id}")
