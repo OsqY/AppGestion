@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/projects")
+@RequestMapping("api/projects")
 public class ProjectController {
     private final ProjectService projectService;
 
@@ -29,7 +29,7 @@ public class ProjectController {
 
     @GetMapping("/")
     public List<Project> getAllProjects(@RequestHeader(value = "Authorization") String token) {
-        if (validateToken(token)) {
+        if (!validateToken(token)) {
             return null;
         }
         return projectService.getProjects();
@@ -38,10 +38,9 @@ public class ProjectController {
     public Project getProjectById(@PathVariable Long id) {
         return projectService.getProjectById(id);
     }
-
     @DeleteMapping("/{id}")
     public void deleteProject(@RequestHeader(value = "Authorization") String token, @PathVariable Long id) {
-        if (validateToken(token)) {
+        if (!validateToken(token)) {
             return;
         }
         projectService.deleteProject(id);
@@ -50,7 +49,7 @@ public class ProjectController {
     @PutMapping("/{id}")
     public ResponseEntity<Project> updateProject(@RequestHeader(value = "Authorization") String token,
                                                  @PathVariable Long id, @RequestBody Project project) {
-        if (validateToken(token)) {
+        if (!validateToken(token)) {
             return ResponseEntity.status(401).build();
         }
         project.setId(id);
@@ -60,7 +59,7 @@ public class ProjectController {
     @PatchMapping("/en_progreso/{id}")
     public ResponseEntity<Project> setProjectStatusToInProgress(@RequestHeader(value = "Authorization") String token,
                                                                 @PathVariable Long id, @RequestBody Project project) {
-        if (validateToken(token)) {
+        if (!validateToken(token)) {
             return ResponseEntity.status(401).build();
         }
         project.setId(id);
@@ -70,7 +69,7 @@ public class ProjectController {
     @PatchMapping("/completado/{id}")
     public ResponseEntity<Project> setProjectStatusToCompleted(@RequestHeader(value = "Authorization") String token,
                                                                @PathVariable Long id, @RequestBody Project project) {
-        if (validateToken(token)) {
+        if (!validateToken(token)) {
             return ResponseEntity.status(401).build();
         }
         project.setId(id);
@@ -82,7 +81,7 @@ public class ProjectController {
     public Project createProject(@RequestHeader(value = "Authorization") String token, @RequestBody Project project) {
         if (project.getPriority() != null && (project.getPriority() == Project.ProjectPriority.BAJA ||
                 project.getPriority() == Project.ProjectPriority.MEDIA || project.getPriority() == Project.ProjectPriority.ALTA)
-        && (validateToken(token))) {
+        && (!validateToken(token))) {
             return null;
         } else {
             return projectService.createProject(project);

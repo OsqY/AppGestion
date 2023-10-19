@@ -13,7 +13,7 @@ function getHeaders() {
 
 async function loadProjects() {
     try {
-        const request = await fetch("projects/", {
+        const request = await fetch("api/projects/", {
             method: "GET",
             headers: getHeaders()
         });
@@ -77,7 +77,7 @@ async function editProject(id) {
     }
     try {
         window.location.href = "createproject?projectId=' + id + '";
-        const request = await fetch("projects/" + id, {
+        const request = await fetch("api/projects/" + id, {
             method: "GET",
             headers: getHeaders()
         });
@@ -99,7 +99,7 @@ async function editProjectStatus(newStatus, id) {
     }
 
     try {
-        const request = await fetch("projects/" + id, {
+        const request = await fetch("api/projects/" + id, {
             method: "GET",
             headers: getHeaders()
         });
@@ -125,7 +125,7 @@ function setProjectStatus(newStatus) {
             const project = JSON.parse(projectToEdit);
 
             if (project.origin === "projectPlace") {
-                fetch("projects/" + newStatus + "/" + project.id, {
+                fetch("api/projects/" + newStatus + "/" + project.id, {
                     method: "PATCH",
                     headers: getHeaders(),
                     body: JSON.stringify(project)

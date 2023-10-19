@@ -23,7 +23,7 @@ public class UserController {
 
     @GetMapping("api/users")
     public List<User> getUsers(@RequestHeader(value = "Authorization") String token) {
-        if (validateToken(token)) {
+        if (!validateToken(token)) {
             System.out.println("No se validó el token");
             return null;
         }
@@ -38,7 +38,7 @@ public class UserController {
     @DeleteMapping(value = "api/users/{id}")
     public void deleteUser(@RequestHeader(value = "Authorization") String token, @PathVariable Long id) {
 
-        if (validateToken(token)) {
+        if (!validateToken(token)) {
             return;
         }
         userDao.deleteUser(id);
