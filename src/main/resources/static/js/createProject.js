@@ -13,7 +13,7 @@ async function createProject() {
     projectInfo.status = 0;
 
     try {
-        const response = await fetch("api/projects/create", {
+        const response = await fetch("/api/project/create", {
             method: "POST",
             headers: {
                 "Accept": "application/json",

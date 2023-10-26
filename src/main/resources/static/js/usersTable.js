@@ -1,3 +1,4 @@
+/*
 // Call the dataTables jQuery plugin
 $(document).ready(function () {
     loadUsers();
@@ -60,3 +61,4 @@ async function deleteUser(id) {
         console.error("Error al eliminar usuario:", error);
     }
 }
+*/

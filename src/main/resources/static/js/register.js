@@ -3,9 +3,7 @@ registerBtn.addEventListener("click", registerUser);
 
 async function registerUser() {
     let userInfo = {};
-    userInfo.userName = document.getElementById("nombreTxt").value;
-    userInfo.userLastName = document.getElementById("apellidoTxt").value;
-    userInfo.email = document.getElementById("correoTxt").value;
+    userInfo.username = document.getElementById("correoTxt").value;
     userInfo.password = document.getElementById("contraseniaTxt").value;
     let repeatPassword = document.getElementById("repetirContraseniaTxt").value;
 
@@ -14,7 +12,7 @@ async function registerUser() {
         return;
     }
 
-    await fetch("api/user", {
+    await fetch("api/auth/register", {
         method: "POST",
         headers: {
             "Accept": "application/json",

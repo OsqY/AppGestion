@@ -13,7 +13,7 @@ function getHeaders() {
 
 async function loadProjects() {
     try {
-        const request = await fetch("api/projects/", {
+        const request = await fetch("api/projects", {
             method: "GET",
             headers: getHeaders()
         });
@@ -57,7 +57,7 @@ async function deleteProject(id) {
     }
 
     try {
-        const request = await fetch("api/projects/" + id, {
+        const request = await fetch("api/project/" + id + "/delete", {
             method: "DELETE",
             headers: getHeaders()
         });
@@ -77,7 +77,7 @@ async function editProject(id) {
     }
     try {
         window.location.href = "createproject?projectId=' + id + '";
-        const request = await fetch("api/projects/" + id, {
+        const request = await fetch("api/project/" + id, {
             method: "GET",
             headers: getHeaders()
         });
